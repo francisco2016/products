@@ -61,10 +61,13 @@ public class StockManager
         return 0;
     }
 
-    /**
+     /**
      * Print details of all the products.
      */
     public void printProductDetails()
-    {
+    {for(Product products: stock){
+       System.out.println(products.toString());//------------------------------------------------------0064
+    }
     }
 }
+ 
