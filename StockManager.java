@@ -31,14 +31,22 @@ public class StockManager
     }
     
     /**
-     * Receive a delivery of a particular product.
+     * Receive a delivery of a particular product. --------- Recibir una entrega de un producto en particular.
      * Increase the quantity of the product by the given amount.
      * @param id The ID of the product.------------------------------------------------------------------------------ 0704
      * @param amount The amount to increase the quantity by.
      */
     public void delivery(int id, int amount)
     {
-     
+         Product producto = findProduct(id);//1º buscamos el producto con el id del parámetro.(utilizando el mt findProduct(id))
+                                          //si lo hay, lo guardo en la VL producto.
+      if(producto != null){     //2º si hay producto, aplico el mt increaseQuantity(amount) de la cl Products, pasandole como
+         producto.increaseQuantity(amount); //parámetro la cantidad que señala el parámetro del mt.
+      }
+      else{
+        System.out.println("El id indicado no pertenece a ningun producto");
+      }
+
     }
    
     
