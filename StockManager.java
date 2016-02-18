@@ -33,18 +33,12 @@ public class StockManager
     /**
      * Receive a delivery of a particular product.
      * Increase the quantity of the product by the given amount.
-     * @param id The ID of the product.------------------------------------------------------------------------------ 0064
+     * @param id The ID of the product.------------------------------------------------------------------------------ 0704
      * @param amount The amount to increase the quantity by.
      */
     public void delivery(int id, int amount)
     {
-      Product producto = findProduct(id);
-      if(producto != null){
-         producto.increaseQuantity(amount);
-      }
-      else{
-        System.out.println("El id indicado no pertenece a ningun producto");
-      }
+     
     }
    
     
@@ -52,39 +46,35 @@ public class StockManager
      * Try to find a product in the stock with the given id.
      * @return The identified product, or null if there is none
      * return El producto identificado, o null si no hay ninguno
-     *         with a matching ID.------------------------------------------------------------------------------- 0064
+     *         with a matching ID.------------------------------------------------------------------------------- 0704
      */
     public Product findProduct(int id)
     {
-      Product producto = null;
-      int index = 0;
-      boolean encontrado = false;
-      while(!encontrado && index < stock.size()){
-        if (stock.get(index).getID() == id)
-        {
-        	producto = stock.get(index);
-          encontrado = true;
+      Product producto = null;   //1º VL para guardar el id del producto, o devolver null, si no existe.
+      int index = 0;             //3º VL necesaria para que funcione el bucle while.
+      boolean encontrado = false;//3º VL para que el bucle while se pare si encuentra el id pasado como parámetro.
+      while(!encontrado && index < stock.size()){//3º while porque cuando encuentra el id buscado, no itera más veces.
+        if (stock.get(index).getID() == id)//4º al recorrer la colección,comprueba si coinciden el id de los productos
+        {                                       //con el id pasado como parámetro.
+            producto = stock.get(index);  //5º si encuentra algun id igual al id parámetro lo guarda en la VL producto.
+          encontrado = true;              //5º entonces ponemos encotrado a verdadero. y el bucle no iterará más
         }
         index++;
       }
-      return producto;
+      return producto;          //2º Retornamos el valor de la VL.
+
     }
     
     /**
      * Locate a product with the given ID, and return how
      * many of this item are in stock. If the ID does not
      * match any product, return zero.
-     * @param id The ID of the product.------------------------------------------------------------------------------ 0064
+     * @param id The ID of the product.------------------------------------------------------------------------------ 0704
      * @return The quantity of the given product in stock.
      */
      public int numberInStock(int id)
     {
-			int cantidad = 0;
-      Product producto = findProduct(id); 
-      if (producto != null) {
-      	 cantidad = producto.getQuantity();
-      }
-      return cantidad;
+      return id;
     }
 
      /**
