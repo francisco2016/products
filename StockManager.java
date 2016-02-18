@@ -74,7 +74,14 @@ public class StockManager
      */
      public int numberInStock(int id)
     {
-      return id;
+      int cantidad = 0;     //1º VL para almacenar la solución, en este caso la cantidad de unidades que tienen el id dado.
+      Product producto = findProduct(id); //2º buscamos el producto con el id del parámetro.(utilizando el mt findProduct(id))
+                                          //si lo hay, lo guardo en la VL producto.
+      if (producto != null) {       //3º si hay producto, aplico el mt getQuantity() de la cl Produc, el cual devuelve el nº 
+      	 cantidad = producto.getQuantity(); // elementos que tienen ese id, y lo guardo en la VL cantidad. 
+      }
+      return cantidad;     //1º retorno al VL, 
+
     }
 
      /**
