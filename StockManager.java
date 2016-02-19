@@ -20,22 +20,37 @@ public class StockManager
     {
         stock = new ArrayList<Product>();
     }
-
+    
+    /**
+     * que permita encontrar productos por su nombre en vez de por su id. En caso de no encontrarse una coincidencia
+     * exacta el método devuelve null --------------------------------------------------------   0065
+     * ----------------------------------------------------------------------------------------------------   0065
+     */
+    public Product findProduct(String name){
+        Product productos = null;
+        for(Product producto : stock){ //1ºrecorro la colección
+            if(producto.getName().equals(name)) { //2º comparo el ID de cada producto con el ID del producto pasdo por parámetro.
+               productos = producto;  //3º al tener diferentes ID , lo añado a la colección stock.
+            }
+        }
+        return productos;
+    }
+    
+    
     /**
      * Add a product to the list. ----------------Añadir un producto a la lista.
      * @param item The item to be added.
      * 0065 3.	Modifica el método addProduct para que no permita añadir un producto que tenga un id de otro 
      *          producto ya existente.
+     *          ---------------------------------------------------------------------------------------------------   0065
      */
     public void addProduct(Product item)
     {
-        for(Product producto : stock){
-            if(producto.getID()  != item.getID()) {
-                stock.add(item);
-                //producto.addProduct(item);
+        for(Product producto : stock){ //1ºrecorro la colección
+            if(producto.getID()  != item.getID()) { //2º comparo el ID de cada producto con el ID del producto pasdo por parámetro.
+                stock.add(item);   //3º al tener diferentes ID , lo añado a la colección stock.
             }
         }
-        //stock.add(item);
     }
 
     
