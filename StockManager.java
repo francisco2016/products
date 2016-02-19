@@ -24,12 +24,22 @@ public class StockManager
     /**
      * Add a product to the list. ----------------Añadir un producto a la lista.
      * @param item The item to be added.
+     * 0065 3.	Modifica el método addProduct para que no permita añadir un producto que tenga un id de otro 
+     *          producto ya existente.
      */
     public void addProduct(Product item)
     {
-        stock.add(item);
+        for(Product producto : stock){
+            if(producto.getID()  != item.getID()) {
+                stock.add(item);
+                //producto.addProduct(item);
+            }
+        }
+        //stock.add(item);
     }
 
+    
+    
     /**
      * que imprima los detalles de todos los productos cuyo stock está por debajo de un determinado número que será pasado
      * como parámetro al método --------------------------------------------------------
@@ -37,9 +47,9 @@ public class StockManager
      */
     public void underGivenNumberInStock(int id){
            
-        for(Product producto : stock){
-            if (producto.getQuantity() < id) {        
-                System.out.println(producto);  
+        for(Product producto : stock){// 1ºrecorro los productos de la colección.
+            if (producto.getQuantity() < id) {  // 2º si del productos hay menor cantidad de unidades que señala el parametro id.      
+                System.out.println(producto);   // se imprimen en pantalla.
             }
         }
         
