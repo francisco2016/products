@@ -22,14 +22,30 @@ public class StockManager
     }
 
     /**
-     * Add a product to the list.
+     * Add a product to the list. ----------------Añadir un producto a la lista.
      * @param item The item to be added.
      */
     public void addProduct(Product item)
     {
         stock.add(item);
     }
-    
+
+    /**
+     * que imprima los detalles de todos los productos cuyo stock está por debajo de un determinado número que será pasado
+     * como parámetro al método --------------------------------------------------------
+     * ---------------------------------------------------------------------------------------------------- 0065
+     */
+    public void underGivenNumberInStock(int id){
+           
+        for(Product producto : stock){
+            if (producto.getQuantity() < id) {        
+                System.out.println(producto);  
+            }
+        }
+        
+
+    } 
+
     /**
      * Receive a delivery of a particular product. --------- Recibir una entrega de un producto en particular.
      * Increase the quantity of the product by the given amount.
@@ -38,18 +54,17 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
-         Product producto = findProduct(id);//1º buscamos el producto con el id del parámetro.(utilizando el mt findProduct(id))
-                                          //si lo hay, lo guardo en la VL producto.
-      if(producto != null){     //2º si hay producto, aplico el mt increaseQuantity(amount) de la cl Products, pasandole como
-         producto.increaseQuantity(amount); //parámetro la cantidad que señala el parámetro del mt.
-      }
-      else{
-        System.out.println("El id indicado no pertenece a ningun producto");
-      }
+        Product producto = findProduct(id);//1º buscamos el producto con el id del parámetro.(utilizando el mt findProduct(id))
+        //si lo hay, lo guardo en la VL producto.
+        if(producto != null){     //2º si hay producto, aplico el mt increaseQuantity(amount) de la cl Products, pasandole como
+            producto.increaseQuantity(amount); //parámetro la cantidad que señala el parámetro del mt.
+        }
+        else{
+            System.out.println("El id indicado no pertenece a ningun producto");
+        }
 
     }
-   
-    
+
     /**
      * Try to find a product in the stock with the given id.
      * @return The identified product, or null if there is none
@@ -58,21 +73,21 @@ public class StockManager
      */
     public Product findProduct(int id)
     {
-      Product producto = null;   //1º VL para guardar el id del producto, o devolver null, si no existe.
-      int index = 0;             //3º VL necesaria para que funcione el bucle while.
-      boolean encontrado = false;//3º VL para que el bucle while se pare si encuentra el id pasado como parámetro.
-      while(!encontrado && index < stock.size()){//3º while porque cuando encuentra el id buscado, no itera más veces.
-        if (stock.get(index).getID() == id)//4º al recorrer la colección,comprueba si coinciden el id de los productos
-        {                                       //con el id pasado como parámetro.
-            producto = stock.get(index);  //5º si encuentra algun id igual al id parámetro lo guarda en la VL producto.
-          encontrado = true;              //5º entonces ponemos encotrado a verdadero. y el bucle no iterará más
+        Product producto = null;   //1º VL para guardar el id del producto, o devolver null, si no existe.
+        int index = 0;             //3º VL necesaria para que funcione el bucle while.
+        boolean encontrado = false;//3º VL para que el bucle while se pare si encuentra el id pasado como parámetro.
+        while(!encontrado && index < stock.size()){//3º while porque cuando encuentra el id buscado, no itera más veces.
+            if (stock.get(index).getID() == id)//4º al recorrer la colección,comprueba si coinciden el id de los productos
+            {                                       //con el id pasado como parámetro.
+                producto = stock.get(index);  //5º si encuentra algun id igual al id parámetro lo guarda en la VL producto.
+                encontrado = true;              //5º entonces ponemos encotrado a verdadero. y el bucle no iterará más
+            }
+            index++;
         }
-        index++;
-      }
-      return producto;          //2º Retornamos el valor de la VL.
+        return producto;          //2º Retornamos el valor de la VL.
 
     }
-    
+
     /**
      * Locate a product with the given ID, and return how
      * many of this item are in stock. If the ID does not
@@ -80,25 +95,25 @@ public class StockManager
      * @param id The ID of the product.------------------------------------------------------------------------------ 0704
      * @return The quantity of the given product in stock.
      */
-     public int numberInStock(int id)
+    public int numberInStock(int id)
     {
-      int cantidad = 0;     //1º VL para almacenar la solución, en este caso la cantidad de unidades que tienen el id dado.
-      Product producto = findProduct(id); //2º buscamos el producto con el id del parámetro.(utilizando el mt findProduct(id))
-                                          //si lo hay, lo guardo en la VL producto.
-      if (producto != null) {       //3º si hay producto, aplico el mt getQuantity() de la cl Produc, el cual devuelve el nº 
-      	 cantidad = producto.getQuantity(); // elementos que tienen ese id, y lo guardo en la VL cantidad. 
-      }
-      return cantidad;     //1º retorno al VL, 
+        int cantidad = 0;     //1º VL para almacenar la solución, en este caso la cantidad de unidades que tienen el id dado.
+        Product producto = findProduct(id); //2º buscamos el producto con el id del parámetro.(utilizando el mt findProduct(id))
+        //si lo hay, lo guardo en la VL producto.
+        if (producto != null) {       //3º si hay producto, aplico el mt getQuantity() de la cl Produc, el cual devuelve el nº 
+            cantidad = producto.getQuantity(); // elementos que tienen ese id, y lo guardo en la VL cantidad. 
+        }
+        return cantidad;     //1º retorno al VL, 
 
     }
 
-     /**
+    /**
      * Print details of all the products.------------------------------------------------------------------------------ 0704
      */
     public void printProductDetails()
     {for(Product products: stock){
-       System.out.println(products);
-    }
+            System.out.println(products);
+        }
     }
 }
- 
+
